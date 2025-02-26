@@ -71,6 +71,8 @@ class HyperLogLog {
 
   /** @brief Cardinality value. */
   size_t cardinality_;
+  std::vector<int64_t> buckets_;
+  int16_t bits_;
 
   /** @todo (student) can add their data structures that support HyperLogLog */
 };

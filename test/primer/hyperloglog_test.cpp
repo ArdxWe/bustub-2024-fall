@@ -23,7 +23,7 @@
 
 namespace bustub {
 
-TEST(HyperLogLogTest, DISABLED_BasicTest1) {
+TEST(HyperLogLogTest, BasicTest1) {
   auto obj = HyperLogLog<std::string>(static_cast<int16_t>(1));
   ASSERT_EQ(obj.GetCardinality(), 0);
   obj.AddElem("Welcome to CMU DB (15-445/645)");

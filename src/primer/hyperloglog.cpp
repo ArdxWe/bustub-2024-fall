@@ -46,7 +46,7 @@ auto HyperLogLog<KeyType>::PositionOfLeftmostOne(const std::bitset<BITSET_CAPACI
   /** @TODO(student) Implement this function! */
   uint64_t p = 1;
 
-  for (int i = BITSET_CAPACITY - bits_-1; i >= 0; i--) {
+  for (int i = BITSET_CAPACITY - bits_ - 1; i >= 0; i--) {
     if (bset[i]) {
       return p;
     }
@@ -79,7 +79,6 @@ auto HyperLogLog<KeyType>::AddElem(KeyType val) -> void {
   }
 
   assert(bucket_index >= 0 && bucket_index < static_cast<int>(buckets_.size()));
-
 
   uint64_t pos = PositionOfLeftmostOne(binary);
   buckets_[bucket_index] = std::max(static_cast<uint64_t>(buckets_[bucket_index]), pos);

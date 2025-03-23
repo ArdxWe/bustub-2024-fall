@@ -12,6 +12,7 @@
 
 #pragma once
 
+#include <cstddef>
 #include <limits>
 #include <list>
 #include <mutex>  // NOLINT
@@ -27,14 +28,25 @@ namespace bustub {
 enum class AccessType { Unknown = 0, Lookup, Scan, Index };
 
 class LRUKNode {
+ public:
+  LRUKNode() = default;
+  explicit LRUKNode(size_t k);
+  LRUKNode(const LRUKNode &other);
+  auto operator=(const LRUKNode &other) -> LRUKNode &;
+
+  auto Append(size_t ts) -> void;
+  auto GetKDistance() const -> std::optional<size_t>;
+  auto GetLastest() const -> size_t;
+  auto IsEvictable() const -> bool;
+  auto SetIsEvictable(bool is_evictable) -> void;
+
  private:
   /** History of last seen K timestamps of this page. Least recent timestamp stored in front. */
   // Remove maybe_unused if you start using them. Feel free to change the member variables as you want.
 
   [[maybe_unused]] std::list<size_t> history_;
   [[maybe_unused]] size_t k_;
-  [[maybe_unused]] frame_id_t fid_;
-  [[maybe_unused]] bool is_evictable_{false};
+  bool is_evictable_;
 };
 
 /**
